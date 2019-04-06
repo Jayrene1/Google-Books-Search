@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "image": "./assets/blueberry.png"
+  },
+  {
+    "id": 2,
+    "image": "./assets/chocolate.png"
+  },
+  {
+    "id": 3,
+    "image": "./assets/coffee.png"
+  },
+  {
+    "id": 4,
+    "image": "./assets/earlgrey.png"
+  },
+  {
+    "id": 5,
+    "image": "./assets/elderflower.png"
+  },
+  {
+    "id": 6,
+    "image": "./assets/greentea.png"
+  },
+  {
+    "id": 7,
+    "image": "./assets/lavender.png"
+  },
+  {
+    "id": 8,
+    "image": "./assets/mango.png"
+  },
+  {
+    "id": 9,
+    "image": "./assets/orange.png"
+  },
+  {
+    "id": 10,
+    "image": "./assets/oreo.png"
+  },
+  {
+    "id": 11,
+    "image": "./assets/pistachio.png"
+  },
+  {
+    "id": 12,
+    "image": "./assets/raspberry.png"
+  },
+  {
+    "id": 13,
+    "image": "./assets/raspberrylemonade.png"
+  },
+  {
+    "id": 14,
+    "image": "./assets/saltedcaramel.png"
+  },
+  {
+    "id": 15,
+    "image": "./assets/strawberry.png"
+  }
+]

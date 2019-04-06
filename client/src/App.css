@@ -1,0 +1,46 @@
+/* These two element styles set the "body" height to 100vh, and footer at the bottom */
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.brand-logo {
+  left: 1.2%;
+}
+
+#info {
+  margin: 2rem;
+  padding-bottom: 2rem;
+}
+
+.border {
+  border: 2px rgba(0, 0, 0, 0.5) solid;
+  border-radius: 5px;
+}
+
+.book {
+  margin: 1rem;
+  padding: 0 1rem 0 1rem;
+}
+
+.page-footer {
+  padding: 0;
+}
+
+.footer-copyright > .container > a {
+  font-size: 1.25rem;
+  transition: 0.3s;
+}
+
+.footer-copyright > .container > a:hover {
+  transform: scale(1.3);
+}
