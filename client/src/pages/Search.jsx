@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Card from "../Components/Card.jsx";
 import ListItem from "../Components/ListItem.jsx";
 import API from "../utils/API";
+import axios from "axios";
 
 class Search extends Component {
   state = {
@@ -20,39 +21,47 @@ class Search extends Component {
           //console.log(this.state.search);
           API.search(this.state.search)
             .then(res => {
-                console.log(res);
                 const data = res.data.items;
                 let bookArray = [];
                 for (var i = 0; i < data.length; i++) {
-                    let bookObject = {
-                        title: data[i].volumeInfo.title,
-                        authors: data[i].volumeInfo.authors,
-                        description: data[i].volumeInfo.description,
-                        image: data[i].volumeInfo.imageLinks.thumbnail,
-                        link: data[i].volumeInfo.infoLink
-                    };
-                    bookArray.push(bookObject);
+                    const info = data[i].volumeInfo;
+                    if (info.title && info.authors && info.infoLink) {
+                        let shortDescription = "No description available";
+                        if (info.description && info.description.length > 512) {
+                            shortDescription = (info.description.substring(0, 511));
+                        }
+                        let bookObject = {
+                            title: info.title,
+                            authors: info.authors,
+                            description: shortDescription,
+                            link: info.infoLink
+                        };
+                        if (info.imageLinks !== undefined) {
+                            bookObject.image = info.imageLinks.thumbnail;
+                        }
+                        bookArray.push(bookObject);
+                    }
                 }
-                console.log(bookArray);
-                this.setState({
-                    books: bookArray
-                })
+                this.setState({books: bookArray})
             })
             .catch(err => console.log(err));
       }
   };
   
   saveBook = book => {
-      console.log(`Saving Book ${book}`); // Save to mongo!!!!!!!!!!!!!!!!!
+      axios.post("/api/books", book)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err.response));
   }
 
   render() {
     return (
         <Fragment>
             <Card info="Book Search">
-                <form>
-                    <div className="input-field col s12">
-                        <input placeholder="Book Title" name="search" type="text" className="validate" value={this.state.search} onChange={this.handleChange} />
+                <form className="padding margin" onSubmit={e => e.preventDefault()}>
+                    <div className="input-field">
+                        <label htmlFor="search">Book Title</label>
+                        <input name="search" type="text" className="validate" value={this.state.search} onChange={this.handleChange} />
                         <button type="button" className="waves-effect waves-light btn right" disabled={!this.state.search} onClick={this.handleSubmit}>Search</button>
                     </div>
                 </form>
@@ -62,8 +71,10 @@ class Search extends Component {
                 {this.state.books.length ? (
                     this.state.books.map((book, index) => (
                         <ListItem book={book} key={index}>
-                            <a type="button" className="blue btn right" href={book.link}>View</a>
-                            <button type="button" className="green btn right" onClick={()=> this.saveBook(book)}>Save</button>
+                            <div className="book-buttons">
+                                <a type="button" style={{display: "table-cell"}} target="_blank" rel="noopener noreferrer" className="blue btn right" href={book.link}>View</a>
+                                <button type="button" className="green btn right" onClick={()=> this.saveBook(book)}>Save</button>
+                            </div>
                         </ListItem>
                     ))
                 ) : (

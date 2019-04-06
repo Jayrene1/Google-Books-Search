@@ -18,18 +18,35 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 #info {
-  margin: 2rem;
-  padding-bottom: 2rem;
-}
-
-.border {
-  border: 2px rgba(0, 0, 0, 0.5) solid;
-  border-radius: 5px;
+  padding: 2rem 0 2rem 0;
+  margin: 2rem 0 2rem 0;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("./books-min.jpg");
+  background-size: cover;
 }
 
 .book {
+  padding: 1rem;
+  position: relative;
+}
+
+.book-buttons {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.margin {
   margin: 1rem;
-  padding: 0 1rem 0 1rem;
+}
+
+.padding {
+  padding: 1rem;
 }
 
 .page-footer {

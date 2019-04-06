@@ -4,7 +4,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 export default {
   // Gets all books
   search: function(query) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${API_KEY}`)
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=15&orderBy=relevance&key=${API_KEY}`)
   },
   getBooks: function() {
     return axios.get("/api/books");
