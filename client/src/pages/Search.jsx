@@ -44,7 +44,7 @@ class Search extends Component {
                 }
                 this.setState({books: bookArray})
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err.response));
       }
   };
   
