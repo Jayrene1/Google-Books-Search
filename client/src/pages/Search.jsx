@@ -18,7 +18,6 @@ class Search extends Component {
   handleSubmit = event => {
       event.preventDefault();
       if (this.state.search) {
-          //console.log(this.state.search);
           API.search(this.state.search)
             .then(res => {
                 const data = res.data.items;
@@ -50,7 +49,9 @@ class Search extends Component {
   
   saveBook = book => {
       axios.post("/api/books", book)
-        .then(res => console.log(res.data))
+        .then(res => {
+            window.M.toast({html: "Book Saved!"});
+        })
         .catch(err => console.log(err.response));
   }
 
